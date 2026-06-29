@@ -73,12 +73,22 @@ def calculate_area_monte_carlo(a1, b1, c1, a2, b2, c2, x_start, x_end, num_sampl
     return mc_area, rand_x, rand_y, inside
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="2つの二次関数で囲まれる面積をモンテカルロ法で計算します。")
+    parser.add_argument('--a1', type=float, default=-1.0, help="関数1のx^2の係数")
+    parser.add_argument('--b1', type=float, default=0.0, help="関数1のxの係数")
+    parser.add_argument('--c1', type=float, default=4.0, help="関数1の定数項")
+    parser.add_argument('--a2', type=float, default=1.0, help="関数2のx^2の係数")
+    parser.add_argument('--b2', type=float, default=-2.0, help="関数2のxの係数")
+    parser.add_argument('--c2', type=float, default=0.0, help="関数2の定数項")
+    parser.add_argument('--samples', type=int, default=100000, help="モンテカルロ法のサンプリング数")
+    args = parser.parse_args()
+
+    a1, b1, c1 = args.a1, args.b1, args.c1
+    a2, b2, c2 = args.a2, args.b2, args.c2
+    num_samples = args.samples
+
     print("任意の2つの二次関数 f(x) = a1*x^2 + b1*x + c1 と g(x) = a2*x^2 + b2*x + c2 の間の面積を求めます。")
-    # ここでは例として以下の関数を使用します。任意に変更可能です。
-    # f(x) = -x^2 + 4
-    # g(x) = x^2 - 2x
-    a1, b1, c1 = -1, 0, 4
-    a2, b2, c2 = 1, -2, 0
     
     print(f"\n関数1: f(x) = {a1}x^2 + {b1}x + {c1}")
     print(f"関数2: g(x) = {a2}x^2 + {b2}x + {c2}")
@@ -97,7 +107,6 @@ def main():
     print(f"\n定積分による面積: {area_int:.6f}")
     
     # モンテカルロ法による面積の計算
-    num_samples = 100000
     area_mc, rand_x, rand_y, inside = calculate_area_monte_carlo(a1, b1, c1, a2, b2, c2, x_start, x_end, num_samples)
     print(f"モンテカルロ法による面積 (N={num_samples}): {area_mc:.6f}")
     

@@ -65,13 +65,23 @@ def calculate_area_monte_carlo(v1, v2, v3, num_samples=100000):
     return mc_area, rand_x, rand_y, inside, (xmin, xmax, ymin, ymax)
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="3つの一次関数で囲まれる三角形の面積をモンテカルロ法で計算します。")
+    parser.add_argument('--m1', type=float, default=1.0, help="関数1の傾き")
+    parser.add_argument('--c1', type=float, default=0.0, help="関数1の切片")
+    parser.add_argument('--m2', type=float, default=-1.0, help="関数2の傾き")
+    parser.add_argument('--c2', type=float, default=4.0, help="関数2の切片")
+    parser.add_argument('--m3', type=float, default=0.0, help="関数3の傾き")
+    parser.add_argument('--c3', type=float, default=0.0, help="関数3の切片")
+    parser.add_argument('--samples', type=int, default=100000, help="モンテカルロ法のサンプリング数")
+    args = parser.parse_args()
+
+    m1, c1 = args.m1, args.c1
+    m2, c2 = args.m2, args.c2
+    m3, c3 = args.m3, args.c3
+    num_samples = args.samples
+
     print("任意の3つの一次関数で囲まれる面積を求めます。")
-    # L1: y = m1*x + c1
-    # L2: y = m2*x + c2
-    # L3: y = m3*x + c3
-    m1, c1 = 1.0, 0.0    # y = x
-    m2, c2 = -1.0, 4.0   # y = -x + 4
-    m3, c3 = 0.0, 0.0    # y = 0
     
     print(f"関数1: y = {m1}x + {c1}")
     print(f"関数2: y = {m2}x + {c2}")
@@ -99,7 +109,6 @@ def main():
     print(f"\n理論値による面積: {area_exact:.6f}")
     
     # モンテカルロ法
-    num_samples = 100000
     area_mc, rand_x, rand_y, inside, bbox = calculate_area_monte_carlo(p12, p23, p31, num_samples)
     print(f"モンテカルロ法による面積 (N={num_samples}): {area_mc:.6f}")
     

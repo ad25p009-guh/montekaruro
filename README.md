@@ -30,12 +30,18 @@ pip install -r requirements.txt
 ```bash
 python monte_carlo_area.py
 ```
+コマンドライン引数で係数やサンプリング数を変更可能です。
+例: `python monte_carlo_area.py --samples 500000 --a1 -1 --b1 0 --c1 4 --a2 1 --b2 -2 --c2 0`
+
 実行すると、コンソールに結果が表示され、グラフが `monte_carlo_result.png` として保存されます。
 
 ### 3つの一次関数（三角形）の面積比較
 ```bash
 python monte_carlo_area_triangle.py
 ```
+コマンドライン引数で係数やサンプリング数を変更可能です。
+例: `python monte_carlo_area_triangle.py --samples 500000 --m1 1 --c1 0 --m2 -1 --c2 4 --m3 0 --c3 0`
+
 実行すると、コンソールに結果が表示され、グラフが `monte_carlo_triangle_result.png` として保存されます。
 
 ## ドキュメント
