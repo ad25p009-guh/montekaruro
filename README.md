@@ -30,18 +30,35 @@ pip install -r requirements.txt
 ```bash
 python monte_carlo_area.py
 ```
-コマンドライン引数で係数やサンプリング数を変更可能です。
-例: `python monte_carlo_area.py --samples 500000 --a1 -1 --b1 0 --c1 4 --a2 1 --b2 -2 --c2 0`
+コマンドライン引数で係数やサンプリング数を自由に変更可能です。
 
+**オプション（引数）の一覧:**
+- `--a1`, `--b1`, `--c1`: 1つ目の二次関数 $f(x) = ax^2 + bx + c$ の各係数（デフォルト: -1, 0, 4）
+- `--a2`, `--b2`, `--c2`: 2つ目の二次関数 $g(x) = ax^2 + bx + c$ の各係数（デフォルト: 1, -2, 0）
+- `--samples`: モンテカルロ法のサンプリング回数 $N$（デフォルト: 100000）
+
+**実行例:**
+```bash
+python monte_carlo_area.py --samples 500000 --a1 -1 --b1 0 --c1 4 --a2 1 --b2 -2 --c2 0
+```
 実行すると、コンソールに結果が表示され、グラフが `monte_carlo_result.png` として保存されます。
 
 ### 3つの一次関数（三角形）の面積比較
 ```bash
 python monte_carlo_area_triangle.py
 ```
-コマンドライン引数で係数やサンプリング数を変更可能です。
-例: `python monte_carlo_area_triangle.py --samples 500000 --m1 1 --c1 0 --m2 -1 --c2 4 --m3 0 --c3 0`
+こちらも同様にコマンドラインから係数を指定できます。
 
+**オプション（引数）の一覧:**
+- `--m1`, `--c1`: 1つ目の直線 $y = mx + c$ の傾きと切片（デフォルト: 1, 0）
+- `--m2`, `--c2`: 2つ目の直線 $y = mx + c$ の傾きと切片（デフォルト: -1, 4）
+- `--m3`, `--c3`: 3つ目の直線 $y = mx + c$ の傾きと切片（デフォルト: 0, 0）
+- `--samples`: モンテカルロ法のサンプリング回数 $N$（デフォルト: 100000）
+
+**実行例:**
+```bash
+python monte_carlo_area_triangle.py --samples 500000 --m1 1 --c1 0 --m2 -1 --c2 4 --m3 0 --c3 0
+```
 実行すると、コンソールに結果が表示され、グラフが `monte_carlo_triangle_result.png` として保存されます。
 
 ## ドキュメント
